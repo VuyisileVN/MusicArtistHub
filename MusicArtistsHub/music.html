@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mzansi Music</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🇿🇦 Mzansi Music</h1>
+
+        <p>
+            Discover South African Amapiano and Maskandi Artists
+        </p>
+
+    </header>
+
+
+    <main>
+
+      
+
+        <section>
+
+            <h2>Choose Your Music Genre</h2>
+
+            <button onclick="showArtists('amapiano')">
+                Amapiano
+            </button>
+
+            <button onclick="showArtists('maskandi')">
+                Maskandi
+            </button>
+
+        </section>
+
+
+        
+
+        <section id="artistSection" hidden>
+
+            <h2>Choose an Artist</h2>
+
+            <div id="artists"></div>
+
+        </section>
+
+
+        
+
+        <section id="songSection" hidden>
+
+            <h2 id="artistName">
+                Songs
+            </h2>
+
+            <div id="songs"></div>
+
+            <br>
+
+            <audio id="musicPlayer" controls>
+                Your browser does not support the audio player.
+            </audio>
+
+        </section>
+
+        <p>Press the button below to logout.</p>
+
+        <button type="submit" onclick="logout()">Logout</button>
+
+    </main>
+
+
+    <script>
+
+       const music = {
+
+    amapiano: {
+
+        "Kabza De Small": [
+            {
+                name: "Kabza Song 1",
+                file: "music/kabza-song1.mp3"
+            },
+            {
+                name: "Kabza Song 2",
+                file: "music/kabza-song2.mp3"
+            },
+            {
+                name: "Kabza Song 3",
+                file: "music/kabza-song3.mp3"
+            }
+        ],
+
+        "DJ Maphorisa": [
+            {
+                name: "Maphorisa Song 1",
+                file: "music/maphorisa-song1.mp3"
+            },
+            {
+                name: "Maphorisa Song 2",
+                file: "music/maphorisa-song2.mp3"
+            },
+            {
+                name: "Maphorisa Song 3",
+                file: "music/maphorisa-song3.mp3"
+            }
+        ],
+
+        "Uncle Waffles": [
+            {
+                name: "Waffles Song 1",
+                file: "music/waffles-song1.mp3"
+            },
+            {
+                name: "Waffles Song 2",
+                file: "music/waffles-song2.mp3"
+            },
+            {
+                name: "Waffles Song 3",
+                file: "music/waffles-song3.mp3"
+            }
+        ],
+
+        "Tyler ICU": [
+            {
+                name: "Tyler ICU Song 1",
+                file: "music/tyler-song1.mp3"
+            },
+            {
+                name: "Tyler ICU Song 2",
+                file: "music/tyler-song2.mp3"
+            },
+            {
+                name: "Tyler ICU Song 3",
+                file: "music/tyler-song3.mp3"
+            }
+        ]
+    },
+
+
+    maskandi: {
+
+        "Big Zulu": [
+            {
+                name: "Big Zulu Song 1",
+                file: "music/bigzulu-song1.mp3"
+            },
+            {
+                name: "Big Zulu Song 2",
+                file: "music/bigzulu-song2.mp3"
+            },
+            {
+                name: "Big Zulu Song 3",
+                file: "music/bigzulu-song3.mp3"
+            }
+        ],
+
+        "Bhekumuzi Luthuli": [
+            {
+                name: "Bhekumuzi Song 1",
+                file: "music/bhekumuzi-song1.mp3"
+            },
+            {
+                name: "Bhekumuzi Song 2",
+                file: "music/bhekumuzi-song2.mp3"
+            },
+            {
+                name: "Bhekumuzi Song 3",
+                file: "music/bhekumuzi-song3.mp3"
+            }
+        ],
+
+        "Phuzekhemisi": [
+            {
+                name: "Phuzekhemisi Song 1",
+                file: "music/phuzekhemisi-song1.mp3"
+            },
+            {
+                name: "Phuzekhemisi Song 2",
+                file: "music/phuzekhemisi-song2.mp3"
+            },
+            {
+                name: "Phuzekhemisi Song 3",
+                file: "music/phuzekhemisi-song3.mp3"
+            }
+        ],
+
+        "Izingane Zoma": [
+            {
+                name: "Izingane Zoma Song 1",
+                file: "music/izingane-song1.mp3"
+            },
+            {
+                name: "Izingane Zoma Song 2",
+                file: "music/izingane-song2.mp3"
+            },
+            {
+                name: "Izingane Zoma Song 3",
+                file: "music/izingane-song3.mp3"
+            }
+        ]
+    }
+};
+
+
+function showArtists(genre) {
+
+    const artistSection =
+        document.getElementById("artistSection");
+
+    const artists =
+        document.getElementById("artists");
+
+    const songSection =
+        document.getElementById("songSection");
+
+
+    artists.innerHTML = "";
+
+    songSection.hidden = true;
+
+    artistSection.hidden = false;
+
+
+    const artistList = music[genre];
+
+
+    for (let artist in artistList) {
+
+        const artistButton =
+            document.createElement("button");
+
+        artistButton.innerHTML = artist;
+
+
+        artistButton.onclick = function () {
+
+            showSongs(
+                artist,
+                artistList[artist]
+            );
+
+        };
+
+
+        artists.appendChild(artistButton);
+
+    }
+}
+
+
+function showSongs(artist, songs) {
+
+    const songSection =
+        document.getElementById("songSection");
+
+    const artistName =
+        document.getElementById("artistName");
+
+    const songList =
+        document.getElementById("songs");
+
+
+    artistName.innerHTML =
+        artist + " - Songs";
+
+    songList.innerHTML = "";
+
+
+    songs.forEach(function (song) {
+
+        const songButton =
+            document.createElement("button");
+
+
+        songButton.innerHTML =
+            "▶ " + song.name;
+
+
+        songButton.onclick = function () {
+
+            playSong(song);
+
+        };
+
+
+        songList.appendChild(songButton);
+
+    });
+
+
+    songSection.hidden = false;
+}
+
+
+function playSong(song) {
+
+    const player =
+        document.getElementById("musicPlayer");
+
+
+    player.src = song.file;
+
+    player.play();
+
+}
+
+    </script>
+    <script src="logout.js"></script>
+</body>
+
+</html>
+

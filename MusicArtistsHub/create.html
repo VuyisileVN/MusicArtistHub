@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+       <h1>Music Artist Hub Registration</h1>
+       <p>Registration.</p>
+    </header>
+
+    <nav>
+            <a href="welcomePage.html">Home</a>
+            <a href="#About">About</a>
+            <a href="Contact">Contact</a>
+    </nav>
+    <main>
+        <h2>Register here</h2>
+
+        <p>Please complete the form below to register for music artis hub.</p>
+
+        <form id="registrationForm">
+           <label for="firstName">First Name:</label>
+           <input type="text" id="firstName" name="firstName" required="">
+           <br><br>
+
+           <label for="lastName">Last Name:</label>
+           <input type="text" id="lastName" name="lastName" required="">
+           <br><br>
+
+           <label for="phone">Phone Number:</label>
+           <input type="text" id="phone" name="phone" required="">
+           <br><br>
+
+           <label for="email">Email:</label>
+           <input type="text" id="email" name="email" required="">
+           <br><br>
+
+           <label for="dob">Fisrt Name:</label>
+           <input type="date" id="dob" name="dob" required="">
+           <br><br>
+
+           <label>Gender:</label>
+           <input type="radio" id="male" name="gender" value="Male">
+           <label>Male</label>
+           <input type="radio" id="female" name="gender" value="Female">
+           <label>Female</label>
+           <br><br>
+
+           <h3>Create Password</h3>
+
+           <label for="username">Username:</label>
+           <input type="text" id="username" name="username" required="">
+           <br><br>
+
+           <label for="password">Password:</label>
+           <input type="password" id="password" name="password" required="">
+           <br><br>
+
+           <label for="confirmPassword">Confirm password:</label>
+           <input type="password" id="confirmPassword" name="confirmPassword" required="">
+           <br><br>
+
+           <button type="submit" onclick="account()">Create Account</button>
+        </form>
+    </main>
+    <script src="create.js"></script>
+</body>
+</html>
